@@ -1,35 +1,90 @@
 import React from 'react'
+import { useEffect } from 'react'
+import ImgForm from "../img/ImgForm.jpg";
 
 const FormEvent = () => {
+
+    useEffect(() => {
+        (() => {
+            'use strict'
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            const forms = document.querySelectorAll('.needs-validation')
+
+            // Loop over them and prevent submission
+            Array.from(forms).forEach(form => {
+                form.addEventListener('submit', event => {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+
+                    form.classList.add('was-validated')
+                }, false)
+            })
+        })()
+    })
+
     return (
         <>
-            <form className='container'>
-                <div className="mb-3">
-                    <label htmlFor="Inputtitle" className="form-label">Titulo</label>
-                    <input type="text" className="form-control" id="Inputtitle" placeholder='Ingrese el nombre del evento' required/>
+            <div className="container">
+                <div className="row g-3 ">
+                    <div className="col-md-6 justify-content-center">
+                        <img src={ImgForm} alt="imagen" className="img-fluid" />
+                    </div>
+                    <div className="col-md-6">
+                        <form className="needs-validation p-4" noValidate>
+                            <div className="mb-3">
+                                <label htmlFor="titulo" className="form-label">Titulo del evento</label>
+                                <input type="text" className="form-control" id="titulo" required />
+                                <div className="valid-feedback">
+                                    Bien hecho!
+                                </div>
+                            </div>
+                            <div className="mb-3">
+                                <label htmlFor="namecompany" className="form-label">Nombre de la empresa</label>
+                                <input type="text" className="form-control" id="namecompany" required />
+                                <div className="valid-feedback">
+                                    Bien hecho!
+                                </div>
+                            </div>
+                            <div className="mb-3">
+                                <label htmlFor="description" className="form-label">Descripción</label>
+                                <input type="text" className="form-control" id="description" required />
+                                <div className="valid-feedback">
+                                    Bien hecho!
+                                </div>
+                            </div>
+                            <div className="mb-3">
+                                <label htmlFor="addressevent" className="form-label">Dirección del evento</label>
+                                <input type="text" className="form-control" id="eventaddress" required />
+                                <div className="valid-feedback">
+                                    Bien hecho!
+                                </div>
+                            </div>
+                            <div className="mb-3">
+                                <label htmlFor="tenumber" className="form-label">Numero de Telefono</label>
+                                <input type="number" className="form-control" id="tenumber" required />
+                                <div className="valid-feedback">
+                                    Bien hecho!
+                                </div>
+                            </div>
+                            <div className="mb-3">
+                                <label htmlFor="image" className='form-label'>Imagen</label>
+                                <input type="file" className='form-control' id='image' required/>
+                                <div className="valid-feedback">
+                                    Bien hecho!
+                                </div>
+                            </div>
+                            <div className="text-center">
+                                <button className="btn btn-primary" type="submit">Submit form</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <div className="mb-3">
-                    <label htmlFor="Inputnamecompany" className="form-label">Nombre de la asociación</label>
-                    <input type="text" className="form-control" id="Inputnamecompany" placeholder='Ingrese el nombre de la veterinaria' required/>
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="Inputtext" className="form-label">Descripción</label>
-                    <input type="text" className="form-control" id="Inputtext" placeholder='Descripción del evento' required/>
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="Inputaddress" className="form-label">Dirección</label>
-                    <input type="text" className="form-control" id="Inputaddress" placeholder='Lugar en la cual llegara a acabo' required/>
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="Inputtenomber" className="form-label">Numero de telefono</label>
-                    <input type="number" className="form-control" id="Inputtenomber" placeholder='Ingrese el numero de telefono'required/>
-                </div>
-                <div className="text-center">
-                    <button type="submit" className="btn btn-primary">Submit</button>
-                </div>
-            </form>
+            </div>
         </>
     )
 }
 
-export default FormEvent
+export default FormEvent;
